@@ -1,0 +1,1435 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teacher Dashboard | Handwriting Screening</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page-loader" id="pageLoader">
+      <div class="spinner"></div>
+    </div>
+
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">H</div>
+          <div>
+            <h5>Handwriting AI</h5>
+            <p>Teacher Portal</p>
+          </div>
+        </div>
+
+        <button
+          class="sidebar-toggle"
+          id="sidebarToggle"
+          type="button"
+          aria-label="Toggle sidebar"
+        >
+          <i class="bi bi-list"></i>
+        </button>
+
+        <nav class="sidebar-nav">
+          <a class="nav-link active" href="#home" data-section="home">
+            <i class="bi bi-house-door"></i><span>Dashboard</span>
+          </a>
+          <a class="nav-link" href="#students" data-section="home">
+            <i class="bi bi-people"></i><span>Students</span>
+          </a>
+          <a class="nav-link" href="#upload" data-section="upload">
+            <i class="bi bi-cloud-arrow-up"></i><span>Upload Handwriting</span>
+          </a>
+          <a class="nav-link" href="#results" data-section="results">
+            <i class="bi bi-graph-up-arrow"></i><span>Screening Results</span>
+          </a>
+          <a class="nav-link" href="#reports" data-section="reports">
+            <i class="bi bi-file-earmark-text"></i><span>Reports</span>
+          </a>
+          <a
+            class="nav-link"
+            href="#notifications"
+            data-section="notifications"
+          >
+            <i class="bi bi-bell"></i><span>Notifications</span>
+          </a>
+          <a class="nav-link" href="#settings" data-section="settings">
+            <i class="bi bi-gear"></i><span>Settings</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-footer">
+          <a class="nav-link logout" href="#">
+            <i class="bi bi-box-arrow-right"></i><span>Logout</span>
+          </a>
+        </div>
+      </aside>
+
+      <div class="main-panel">
+        <nav class="topbar">
+          <div class="topbar-start">
+            <button class="mobile-toggle" id="mobileToggle" type="button">
+              <i class="bi bi-list"></i>
+            </button>
+            <div class="logo-pill">
+              <span class="logo-mark">S</span>
+              <div>
+                <h6>Springfield School</h6>
+                <p>Learning Support Team</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="topbar-center">
+            <div class="search-box">
+              <i class="bi bi-search"></i>
+              <input type="text" placeholder="Search students or reports" />
+            </div>
+          </div>
+
+          <div class="topbar-end">
+            <button class="icon-btn" type="button" aria-label="Notifications">
+              <i class="bi bi-bell"></i>
+            </button>
+            <button
+              class="theme-toggle"
+              id="themeToggle"
+              type="button"
+              aria-label="Toggle theme"
+            >
+              <i class="bi bi-moon-stars"></i>
+            </button>
+            <div class="profile-menu dropdown">
+              <button
+                class="profile-btn dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80"
+                  alt="Teacher profile"
+                />
+                <span>Ms. Rivera</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><a class="dropdown-item" href="#">Preferences</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="#">Sign out</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+        <main class="content-area">
+          <section class="content-section active" id="homeSection">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Educational support overview</p>
+                <h2>Teacher Dashboard</h2>
+              </div>
+              <button
+                class="btn btn-primary"
+                type="button"
+                data-section="upload"
+              >
+                New Upload <i class="bi bi-plus-circle ms-2"></i>
+              </button>
+            </div>
+
+            <div class="hero-grid">
+              <div class="panel ai-hero-panel">
+                <div class="ai-status-pill">
+                  <span class="ai-dot"></span>
+                  <span>AI System Online</span>
+                </div>
+                <div class="row g-4 align-items-center">
+                  <div class="col-lg-8">
+                    <p class="eyebrow">AI overview</p>
+                    <h3>Welcome back, Ms. Rivera</h3>
+                    <p class="hero-copy">
+                      Your handwriting screening layer is supporting 148
+                      students with explainable signals, confidence-aware
+                      insights, and referral-ready summaries.
+                    </p>
+                    <div class="hero-badges">
+                      <span class="hero-badge">Model v1.2</span>
+                      <span class="hero-badge">Last analysis 2 min ago</span>
+                      <span class="hero-badge">24 flagged this week</span>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="ai-metrics">
+                      <div class="metric-item">
+                        <span>Model Status</span><strong>Online</strong>
+                      </div>
+                      <div class="metric-item">
+                        <span>Confidence</span><strong>91%</strong>
+                      </div>
+                      <div class="metric-item">
+                        <span>Screenings Today</span><strong>12</strong>
+                      </div>
+                      <div class="metric-item">
+                        <span>Pending Referrals</span><strong>4</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel ai-confidence-panel">
+                <div class="confidence-meter">
+                  <div class="meter-ring" data-percent="91">
+                    <span>91%</span>
+                  </div>
+                  <div>
+                    <p class="eyebrow">Confidence</p>
+                    <h4>Model Confidence</h4>
+                    <p class="hero-copy">
+                      This score reflects the stability of the current
+                      handwriting pattern interpretation.
+                    </p>
+                    <span
+                      class="info-chip"
+                      data-bs-toggle="tooltip"
+                      title="Higher confidence means the model found strong supporting evidence across multiple handwriting indicators."
+                      >What does this mean?</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="summary-grid">
+              <article class="summary-card blue">
+                <div class="card-icon"><i class="bi bi-people-fill"></i></div>
+                <div>
+                  <p class="label">Total Students</p>
+                  <h3 class="counter" data-target="148">0</h3>
+                  <span class="trend up">+12% this term</span>
+                </div>
+              </article>
+              <article class="summary-card green">
+                <div class="card-icon">
+                  <i class="bi bi-file-earmark-richtext-fill"></i>
+                </div>
+                <div>
+                  <p class="label">Samples Uploaded</p>
+                  <h3 class="counter" data-target="63">0</h3>
+                  <span class="trend up">+8 new this week</span>
+                </div>
+              </article>
+              <article class="summary-card orange">
+                <div class="card-icon">
+                  <i class="bi bi-exclamation-triangle-fill"></i>
+                </div>
+                <div>
+                  <p class="label">Students Flagged</p>
+                  <h3 class="counter" data-target="24">0</h3>
+                  <span class="trend neutral">6 pending review</span>
+                </div>
+              </article>
+              <article class="summary-card red">
+                <div class="card-icon"><i class="bi bi-journal-check"></i></div>
+                <div>
+                  <p class="label">Reports Generated</p>
+                  <h3 class="counter" data-target="41">0</h3>
+                  <span class="trend up">+3 today</span>
+                </div>
+              </article>
+            </div>
+
+            <div class="dashboard-grid">
+              <div class="panel panel-large">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Latest activity</p>
+                    <h4>Recent Activity Feed</h4>
+                  </div>
+                </div>
+                <div class="activity-list">
+                  <div class="activity-item">
+                    <div class="activity-icon green">
+                      <i class="bi bi-cloud-arrow-up"></i>
+                    </div>
+                    <div>
+                      <h6>New handwriting uploaded</h6>
+                      <p>Student ID 2014 • 10 minutes ago</p>
+                    </div>
+                  </div>
+                  <div class="activity-item">
+                    <div class="activity-icon blue">
+                      <i class="bi bi-file-earmark-bar-graph"></i>
+                    </div>
+                    <div>
+                      <h6>Report generated</h6>
+                      <p>Class 4B screening completed • 34 minutes ago</p>
+                    </div>
+                  </div>
+                  <div class="activity-item">
+                    <div class="activity-icon orange">
+                      <i class="bi bi-person-plus"></i>
+                    </div>
+                    <div>
+                      <h6>Student referred</h6>
+                      <p>Student ID 1189 forwarded for follow-up</p>
+                    </div>
+                  </div>
+                  <div class="activity-item">
+                    <div class="activity-icon red">
+                      <i class="bi bi-eye"></i>
+                    </div>
+                    <div>
+                      <h6>Teacher viewed report</h6>
+                      <p>Ms. Rivera reviewed screening summary</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Calendar</p>
+                    <h4>Upcoming</h4>
+                  </div>
+                </div>
+                <div class="calendar-card">
+                  <div class="calendar-date">26</div>
+                  <div>
+                    <h6>Parent consultation</h6>
+                    <p>2:30 PM • Screening review</p>
+                  </div>
+                </div>
+                <div class="calendar-card">
+                  <div class="calendar-date">28</div>
+                  <div>
+                    <h6>Teacher workshop</h6>
+                    <p>10:00 AM • Referral guidance</p>
+                  </div>
+                </div>
+                <div class="calendar-card">
+                  <div class="calendar-date">01</div>
+                  <div>
+                    <h6>Monthly reminder</h6>
+                    <p>Follow-up review due</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel mt-4">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Student overview</p>
+                  <h4>Student Screening Table</h4>
+                </div>
+                <div class="search-box table-search">
+                  <i class="bi bi-search"></i>
+                  <input
+                    id="studentSearch"
+                    type="text"
+                    placeholder="Search by name or ID"
+                  />
+                </div>
+              </div>
+              <div class="filter-row">
+                <select class="form-select" id="filterClass">
+                  <option value="All">All Classes</option>
+                  <option value="Grade 3A">Grade 3A</option>
+                  <option value="Grade 4B">Grade 4B</option>
+                  <option value="Grade 5C">Grade 5C</option>
+                </select>
+                <select class="form-select" id="filterRisk">
+                  <option value="All">All Risks</option>
+                  <option value="Low Risk">Low Risk</option>
+                  <option value="Medium Risk">Medium Risk</option>
+                  <option value="High Risk">High Risk</option>
+                </select>
+                <select class="form-select" id="filterDate">
+                  <option value="All">All Dates</option>
+                  <option value="Apr 19">Apr 19</option>
+                  <option value="Apr 22">Apr 22</option>
+                  <option value="Mar 28">Mar 28</option>
+                </select>
+                <select class="form-select" id="filterTeacher">
+                  <option value="All">All Teachers</option>
+                  <option value="Ms. Rivera">Ms. Rivera</option>
+                  <option value="Mr. Lewis">Mr. Lewis</option>
+                  <option value="Ms. Carter">Ms. Carter</option>
+                </select>
+                <select class="form-select" id="filterAge">
+                  <option value="All">All Ages</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+                <select class="form-select" id="filterGender">
+                  <option value="All">All Genders</option>
+                  <option value="Female">Female</option>
+                  <option value="Male">Male</option>
+                </select>
+              </div>
+              <div class="table-responsive">
+                <table class="table align-middle">
+                  <thead>
+                    <tr>
+                      <th>
+                        <button class="sort-btn" data-sort="id">
+                          Student ID
+                        </button>
+                      </th>
+                      <th>
+                        <button class="sort-btn" data-sort="name">
+                          Student Name
+                        </button>
+                      </th>
+                      <th>Class</th>
+                      <th>Age</th>
+                      <th>Last Screening</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="studentTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="dashboard-grid mt-4">
+              <div class="panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Admin insights</p>
+                    <h4>Classroom Analytics</h4>
+                  </div>
+                </div>
+                <div class="insight-grid">
+                  <div class="insight-card">
+                    <span>Highest Risk Class</span><strong>Grade 3A</strong>
+                  </div>
+                  <div class="insight-card">
+                    <span>Most Improved Class</span><strong>Grade 4B</strong>
+                  </div>
+                  <div class="insight-card">
+                    <span>Students Screened This Month</span><strong>38</strong>
+                  </div>
+                  <div class="insight-card">
+                    <span>Average Cognitive Load</span><strong>67%</strong>
+                  </div>
+                  <div class="insight-card">
+                    <span>Pending Referrals</span><strong>4</strong>
+                  </div>
+                  <div class="insight-card">
+                    <span>Reports Generated</span><strong>41</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Heatmap</p>
+                    <h4>Classroom Risk Heatmap</h4>
+                  </div>
+                </div>
+                <div class="heatmap-list">
+                  <div class="heatmap-row">
+                    <span>Grade 3A</span>
+                    <div class="heatmap-cell low"></div>
+                    <div class="heatmap-cell low"></div>
+                    <div class="heatmap-cell medium"></div>
+                    <div class="heatmap-cell high"></div>
+                    <div class="heatmap-cell medium"></div>
+                  </div>
+                  <div class="heatmap-row">
+                    <span>Grade 4A</span>
+                    <div class="heatmap-cell low"></div>
+                    <div class="heatmap-cell low"></div>
+                    <div class="heatmap-cell low"></div>
+                    <div class="heatmap-cell medium"></div>
+                    <div class="heatmap-cell medium"></div>
+                  </div>
+                  <div class="heatmap-row">
+                    <span>Grade 5A</span>
+                    <div class="heatmap-cell high"></div>
+                    <div class="heatmap-cell high"></div>
+                    <div class="heatmap-cell medium"></div>
+                    <div class="heatmap-cell low"></div>
+                    <div class="heatmap-cell low"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dashboard-grid charts-grid mt-4">
+              <div class="panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Classroom analytics</p>
+                    <h4>Students Screened by Class</h4>
+                  </div>
+                </div>
+                <canvas id="barChart"></canvas>
+              </div>
+              <div class="panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Risk distribution</p>
+                    <h4>Screening Outcomes</h4>
+                  </div>
+                </div>
+                <canvas id="pieChart"></canvas>
+              </div>
+              <div class="panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Trend</p>
+                    <h4>Monthly Screening Trend</h4>
+                  </div>
+                </div>
+                <canvas id="lineChart"></canvas>
+              </div>
+            </div>
+
+            <div class="dashboard-grid charts-grid mt-4">
+              <div class="panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Pattern view</p>
+                    <h4>Risk Radar</h4>
+                  </div>
+                </div>
+                <canvas id="radarChart"></canvas>
+              </div>
+              <div class="panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Progress lens</p>
+                    <h4>Progress Scatter</h4>
+                  </div>
+                </div>
+                <canvas id="scatterChart"></canvas>
+              </div>
+            </div>
+
+            <div class="dashboard-grid charts-grid mt-4">
+              <div class="panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Dynamic insights</p>
+                    <h4>Live Support Signals</h4>
+                  </div>
+                </div>
+                <div class="insight-summary" id="insightSummary">
+                  Waiting for a sample to surface classroom-ready observations.
+                </div>
+                <ul class="insight-list" id="insightList">
+                  <li>Draw a few lines to see spacing and rhythm signals.</li>
+                  <li>
+                    Upload a page to compare the sample against the current
+                    profile.
+                  </li>
+                  <li>These notes are supportive and not diagnostic.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section class="content-section" id="uploadSection">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Capture new evidence</p>
+                <h2>Upload Handwriting Sample</h2>
+              </div>
+            </div>
+
+            <div class="upload-layout">
+              <div class="panel upload-panel">
+                <div class="upload-zone" id="uploadZone">
+                  <input
+                    type="file"
+                    id="fileInput"
+                    accept="image/*,.pdf"
+                    hidden
+                  />
+                  <i class="bi bi-cloud-arrow-up-fill"></i>
+                  <h4>Drag & Drop to Upload</h4>
+                  <p>
+                    Supports image files and PDF uploads from a tablet or
+                    scanner.
+                  </p>
+                  <button
+                    class="btn btn-outline-primary"
+                    id="browseButton"
+                    type="button"
+                  >
+                    Choose File
+                  </button>
+                </div>
+
+                <div class="upload-details mt-4">
+                  <div class="mb-3">
+                    <label class="form-label">Student</label>
+                    <select class="form-select">
+                      <option>Amira Khan</option>
+                      <option>Leo Martinez</option>
+                      <option>Sophia Chen</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Class</label>
+                    <select class="form-select">
+                      <option>Grade 3A</option>
+                      <option>Grade 4B</option>
+                      <option>Grade 5C</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Teacher Notes</label>
+                    <textarea
+                      class="form-control"
+                      rows="4"
+                      placeholder="Describe observation notes for the uploaded sample..."
+                    ></textarea>
+                  </div>
+                  <div class="progress mb-3" aria-label="Upload progress">
+                    <div
+                      class="progress-bar"
+                      id="uploadProgress"
+                      style="width: 0%"
+                    ></div>
+                  </div>
+                  <button
+                    class="btn btn-primary w-100"
+                    id="uploadButton"
+                    type="button"
+                  >
+                    Upload Sample
+                  </button>
+                  <div class="upload-success" id="uploadSuccess">
+                    <i class="bi bi-check-circle-fill"></i>
+                    <span>Sample uploaded successfully.</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel preview-panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Preview</p>
+                    <h4>Uploaded Handwriting</h4>
+                  </div>
+                </div>
+                <div class="preview-toolbar">
+                  <button class="btn btn-outline-primary btn-sm" type="button">
+                    <i class="bi bi-zoom-in"></i> Zoom
+                  </button>
+                  <button
+                    class="btn btn-outline-secondary btn-sm"
+                    type="button"
+                  >
+                    <i class="bi bi-arrow-clockwise"></i> Rotate
+                  </button>
+                  <button class="btn btn-outline-success btn-sm" type="button">
+                    <i class="bi bi-fullscreen"></i> Fullscreen
+                  </button>
+                  <button class="btn btn-outline-info btn-sm" type="button">
+                    <i class="bi bi-download"></i> Download
+                  </button>
+                </div>
+                <div class="preview-image" id="previewImage">
+                  <div class="preview-canvas-shell">
+                    <canvas
+                      id="handwritingCanvas"
+                      width="620"
+                      height="320"
+                    ></canvas>
+                    <div class="canvas-toolbar">
+                      <button
+                        class="btn btn-outline-primary btn-sm"
+                        id="clearCanvas"
+                        type="button"
+                      >
+                        <i class="bi bi-eraser"></i> Clear
+                      </button>
+                      <button
+                        class="btn btn-outline-secondary btn-sm"
+                        id="sampleCanvas"
+                        type="button"
+                      >
+                        <i class="bi bi-brush"></i> Load Sample
+                      </button>
+                    </div>
+                  </div>
+                  <div class="live-metrics">
+                    <div class="metric-pill">
+                      <span>Consistency</span>
+                      <strong id="consistencyMetric">—</strong>
+                    </div>
+                    <div class="metric-pill">
+                      <span>Spacing</span>
+                      <strong id="spacingMetric">—</strong>
+                    </div>
+                    <div class="metric-pill">
+                      <span>Effort</span>
+                      <strong id="effortMetric">—</strong>
+                    </div>
+                  </div>
+                </div>
+                <div class="process-steps mt-3" id="processSteps">
+                  <div class="process-step active">Scanning handwriting...</div>
+                  <div class="process-step">Detecting letters...</div>
+                  <div class="process-step">Extracting pressure...</div>
+                  <div class="process-step">Calculating cognitive load...</div>
+                  <div class="process-step">Generating report...</div>
+                </div>
+                <div class="progress mt-3" aria-label="Processing progress">
+                  <div
+                    class="progress-bar"
+                    id="processingProgress"
+                    style="width: 0%"
+                  ></div>
+                </div>
+                <div class="upload-status" id="processingStatus">
+                  Waiting for sample...
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="content-section" id="resultsSection">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">AI-assisted review</p>
+                <h2>Screening Results</h2>
+              </div>
+              <button
+                class="btn btn-outline-primary"
+                type="button"
+                data-section="reports"
+              >
+                View Report
+              </button>
+            </div>
+
+            <div class="results-grid">
+              <div class="panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Probabilistic indicators</p>
+                    <h4>Risk Scores</h4>
+                  </div>
+                </div>
+                <div class="progress-list">
+                  <div class="progress-card">
+                    <div class="progress-ring blue" style="--value: 68">
+                      <span>68%</span>
+                    </div>
+                    <div class="flex-grow-1">
+                      <div
+                        class="d-flex justify-content-between align-items-center"
+                      >
+                        <h6>Dyslexia Risk</h6>
+                        <span class="info-chip">Confidence 91%</span>
+                      </div>
+                      <p>Elevated letter reversal patterns</p>
+                      <div class="reason-tags">
+                        <span class="reason-chip"
+                          >Irregular letter spacing</span
+                        >
+                        <span class="reason-chip">Letter reversals</span>
+                        <span class="reason-chip">Slow writing speed</span>
+                        <span class="reason-chip"
+                          >Uneven baseline alignment</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="progress-card">
+                    <div class="progress-ring orange" style="--value: 34">
+                      <span>34%</span>
+                    </div>
+                    <div class="flex-grow-1">
+                      <div
+                        class="d-flex justify-content-between align-items-center"
+                      >
+                        <h6>Dysgraphia Risk</h6>
+                        <span class="info-chip">Confidence 84%</span>
+                      </div>
+                      <p>Inconsistent pressure and spacing</p>
+                      <div class="reason-tags">
+                        <span class="reason-chip">Pressure variation</span>
+                        <span class="reason-chip">Pen lift count</span>
+                        <span class="reason-chip">Variable slant</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="progress-card">
+                    <div class="progress-ring green" style="--value: 12">
+                      <span>12%</span>
+                    </div>
+                    <div class="flex-grow-1">
+                      <div
+                        class="d-flex justify-content-between align-items-center"
+                      >
+                        <h6>Dyscalculia Risk</h6>
+                        <span class="info-chip">Confidence 76%</span>
+                      </div>
+                      <p>Lower signal at this point</p>
+                      <div class="reason-tags">
+                        <span class="reason-chip"
+                          >No strong arithmetic pattern</span
+                        >
+                        <span class="reason-chip">Stable number formation</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="progress-card">
+                    <div class="progress-ring red" style="--value: 71">
+                      <span>71%</span>
+                    </div>
+                    <div class="flex-grow-1">
+                      <div
+                        class="d-flex justify-content-between align-items-center"
+                      >
+                        <h6>Cognitive Load</h6>
+                        <span class="info-chip">Confidence 89%</span>
+                      </div>
+                      <p>High effort during task execution</p>
+                      <div class="reason-tags">
+                        <span class="reason-chip">Long pauses</span>
+                        <span class="reason-chip">Frequent revisions</span>
+                        <span class="reason-chip">Elevated task effort</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Handwriting features</p>
+                    <h4>Extracted Features</h4>
+                  </div>
+                </div>
+                <div class="feature-grid">
+                  <div class="feature-card">
+                    <div class="feature-head">
+                      <i class="bi bi-lightning-charge"></i>
+                      <h6>Writing Pressure</h6>
+                    </div>
+                    <div class="mini-gauge"><div style="width: 72%"></div></div>
+                    <strong>Moderate</strong>
+                    <p>Consistent but occasionally forceful strokes.</p>
+                  </div>
+                  <div class="feature-card">
+                    <div class="feature-head">
+                      <i class="bi bi-speedometer2"></i>
+                      <h6>Writing Speed</h6>
+                    </div>
+                    <div class="mini-gauge"><div style="width: 58%"></div></div>
+                    <strong>Slow</strong>
+                    <p>Extended pauses between words.</p>
+                  </div>
+                  <div class="feature-card">
+                    <div class="feature-head">
+                      <i class="bi bi-fonts"></i>
+                      <h6>Letter Formation</h6>
+                    </div>
+                    <div class="mini-gauge"><div style="width: 64%"></div></div>
+                    <strong>Variable</strong>
+                    <p>Several letters appear unevenly shaped.</p>
+                  </div>
+                  <div class="feature-card">
+                    <div class="feature-head">
+                      <i class="bi bi-cursor"></i>
+                      <h6>Pen Lift Count</h6>
+                    </div>
+                    <div class="mini-gauge"><div style="width: 81%"></div></div>
+                    <strong>High</strong>
+                    <p>Frequent breaks during sentence flow.</p>
+                  </div>
+                  <div class="feature-card">
+                    <div class="feature-head">
+                      <i class="bi bi-arrows-expand"></i>
+                      <h6>Word Spacing</h6>
+                    </div>
+                    <div class="mini-gauge"><div style="width: 61%"></div></div>
+                    <strong>Irregular</strong>
+                    <p>Spacing differs across the sample.</p>
+                  </div>
+                  <div class="feature-card">
+                    <div class="feature-head">
+                      <i class="bi bi-slash-circle"></i>
+                      <h6>Stroke Consistency</h6>
+                    </div>
+                    <div class="mini-gauge"><div style="width: 69%"></div></div>
+                    <strong>Mixed</strong>
+                    <p>Some strokes are controlled while others are erratic.</p>
+                  </div>
+                  <div class="feature-card">
+                    <div class="feature-head">
+                      <i class="bi bi-align-bottom"></i>
+                      <h6>Baseline Alignment</h6>
+                    </div>
+                    <div class="mini-gauge"><div style="width: 55%"></div></div>
+                    <strong>Uneven</strong>
+                    <p>Line direction shifts across the page.</p>
+                  </div>
+                  <div class="feature-card">
+                    <div class="feature-head">
+                      <i class="bi bi-diagram-3"></i>
+                      <h6>Slant Angle</h6>
+                    </div>
+                    <div class="mini-gauge"><div style="width: 67%"></div></div>
+                    <strong>Variable</strong>
+                    <p>Letter slant changes throughout the sample.</p>
+                  </div>
+                  <div class="feature-card">
+                    <div class="feature-head">
+                      <i class="bi bi-aspect-ratio"></i>
+                      <h6>Character Size</h6>
+                    </div>
+                    <div class="mini-gauge"><div style="width: 63%"></div></div>
+                    <strong>Inconsistent</strong>
+                    <p>Size fluctuates between letters and words.</p>
+                  </div>
+                  <div class="feature-card">
+                    <div class="feature-head">
+                      <i class="bi bi-activity"></i>
+                      <h6>Cognitive Load Score</h6>
+                    </div>
+                    <div class="mini-gauge"><div style="width: 71%"></div></div>
+                    <strong>71</strong>
+                    <p>Additional effort visible during copying.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="results-grid mt-4">
+              <div class="panel risk-panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Recommendation</p>
+                    <h4>Medium Risk</h4>
+                  </div>
+                </div>
+                <p>
+                  The handwriting demonstrates irregular spacing, inconsistent
+                  letter formation, and elevated cognitive load. This screening
+                  identifies patterns that may warrant closer classroom
+                  observation and possible referral for further professional
+                  evaluation.
+                </p>
+                <ul class="check-list">
+                  <li><i class="bi bi-check2-circle"></i> Monitor progress</li>
+                  <li><i class="bi bi-arrow-repeat"></i> Repeat screening</li>
+                  <li>
+                    <i class="bi bi-person-lines-fill"></i> Refer for
+                    professional assessment
+                  </li>
+                </ul>
+              </div>
+
+              <div class="panel image-panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Reference sample</p>
+                    <h4>Uploaded Handwriting</h4>
+                  </div>
+                </div>
+                <div class="analysis-image">
+                  <img
+                    src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80"
+                    alt="Handwriting sample"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="panel mt-4">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">History</p>
+                  <h4>Risk Timeline</h4>
+                </div>
+              </div>
+              <div class="timeline">
+                <div class="timeline-item timeline-item-highlight">
+                  <div class="timeline-date">Mar 14</div>
+                  <div>
+                    <h6>Low Risk</h6>
+                    <p>Ms. Carter • Recommendation: monitor progress</p>
+                  </div>
+                  <span class="status-badge low">Completed</span>
+                </div>
+                <div class="timeline-item timeline-item-highlight">
+                  <div class="timeline-date">Apr 02</div>
+                  <div>
+                    <h6>Medium Risk</h6>
+                    <p>Mr. Lewis • Recommendation: repeat screening</p>
+                  </div>
+                  <span class="status-badge medium">Follow-up</span>
+                </div>
+                <div class="timeline-item timeline-item-highlight">
+                  <div class="timeline-date">Apr 19</div>
+                  <div>
+                    <h6>High Risk</h6>
+                    <p>Ms. Rivera • Recommendation: refer for assessment</p>
+                  </div>
+                  <span class="status-badge high">Urgent</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="dashboard-grid mt-4">
+              <div class="panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Student comparison</p>
+                    <h4>Before vs Current</h4>
+                  </div>
+                </div>
+                <div class="comparison-grid">
+                  <div>
+                    <h6>Previous Sample</h6>
+                    <p>Writing speed: 72%</p>
+                    <p>Letter formation: 64%</p>
+                    <p>Spacing: 58%</p>
+                  </div>
+                  <div>
+                    <h6>Current Sample</h6>
+                    <p>Writing speed: 87%</p>
+                    <p>Letter formation: 84%</p>
+                    <p>Spacing: 53%</p>
+                  </div>
+                </div>
+                <div class="comparison-badges">
+                  <span class="hero-badge">Writing speed +15%</span>
+                  <span class="hero-badge">Letter formation +20%</span>
+                  <span class="hero-badge">Spacing -5%</span>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">Referral journey</p>
+                    <h4>Support Workflow</h4>
+                  </div>
+                </div>
+                <div class="referral-flow">
+                  <div class="referral-step active">Teacher</div>
+                  <div class="referral-step">Principal</div>
+                  <div class="referral-step">School Counselor</div>
+                  <div class="referral-step">Clinical Psychologist</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dashboard-grid mt-4">
+              <div class="panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">AI insights</p>
+                    <h4>Dashboard Insights</h4>
+                  </div>
+                </div>
+                <ul class="check-list">
+                  <li>
+                    <i class="bi bi-lightning-charge"></i> Writing speed is 23%
+                    slower than the class average.
+                  </li>
+                  <li>
+                    <i class="bi bi-lightning-charge"></i> Pressure variation
+                    increased compared to the previous sample.
+                  </li>
+                  <li>
+                    <i class="bi bi-lightning-charge"></i> Letter spacing
+                    improved by 18%.
+                  </li>
+                  <li>
+                    <i class="bi bi-lightning-charge"></i> Student requires
+                    closer observation.
+                  </li>
+                </ul>
+              </div>
+              <div class="panel">
+                <div class="panel-head">
+                  <div>
+                    <p class="eyebrow">AI recommendations</p>
+                    <h4>Teacher Actions</h4>
+                  </div>
+                </div>
+                <ul class="check-list">
+                  <li>
+                    <i class="bi bi-check2-circle"></i> Monitor for two weeks
+                  </li>
+                  <li>
+                    <i class="bi bi-check2-circle"></i> Give larger writing
+                    worksheets
+                  </li>
+                  <li>
+                    <i class="bi bi-check2-circle"></i> Encourage slower writing
+                  </li>
+                  <li>
+                    <i class="bi bi-check2-circle"></i> Repeat screening after
+                    30 days
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section class="content-section" id="reportsSection">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Printable summary</p>
+                <h2>Report Page</h2>
+              </div>
+              <div>
+                <button
+                  class="btn btn-outline-primary me-2"
+                  type="button"
+                  onclick="window.print()"
+                >
+                  Print Report
+                </button>
+                <button class="btn btn-primary" type="button">
+                  Download PDF
+                </button>
+              </div>
+            </div>
+
+            <div class="panel report-paper">
+              <div class="report-header">
+                <div>
+                  <h3>Handwriting-to-Cognitive Load Mapping</h3>
+                  <p>For Undiagnosed Learning Disabilities</p>
+                </div>
+                <div class="report-logo">S</div>
+              </div>
+
+              <div class="report-grid">
+                <div>
+                  <h6>Student Details</h6>
+                  <p><strong>Name:</strong> Amira Khan</p>
+                  <p><strong>Student ID:</strong> 2014</p>
+                  <p><strong>Class:</strong> Grade 3A</p>
+                  <p><strong>Age:</strong> 8</p>
+                </div>
+                <div>
+                  <h6>Teacher Details</h6>
+                  <p><strong>Teacher:</strong> Ms. Rivera</p>
+                  <p><strong>School:</strong> Springfield School</p>
+                  <p><strong>Review Date:</strong> July 26, 2026</p>
+                </div>
+              </div>
+
+              <div class="report-grid mt-4">
+                <div>
+                  <h6>Risk Summary</h6>
+                  <p>Dyslexia Risk: 68%</p>
+                  <p>Dysgraphia Risk: 34%</p>
+                  <p>Dyscalculia Risk: 12%</p>
+                  <p>Cognitive Load: 71%</p>
+                  <div class="hero-badges mt-2">
+                    <span class="hero-badge">AI Confidence 91%</span>
+                    <span class="hero-badge">Recommended follow-up</span>
+                  </div>
+                </div>
+                <div>
+                  <h6>Teacher Notes</h6>
+                  <p>
+                    Student displayed inconsistent letter formation and frequent
+                    pauses while copying a sentence from the board.
+                  </p>
+                </div>
+              </div>
+
+              <div class="report-grid mt-4">
+                <div class="report-table">
+                  <h6>Extracted Features</h6>
+                  <table class="table table-sm">
+                    <thead>
+                      <tr>
+                        <th>Feature</th>
+                        <th>Value</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Writing Pressure</td>
+                        <td>Moderate</td>
+                      </tr>
+                      <tr>
+                        <td>Writing Speed</td>
+                        <td>Slow</td>
+                      </tr>
+                      <tr>
+                        <td>Letter Formation</td>
+                        <td>Variable</td>
+                      </tr>
+                      <tr>
+                        <td>Word Spacing</td>
+                        <td>Irregular</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div>
+                  <h6>Handwriting Preview</h6>
+                  <div class="report-preview-box">
+                    <div class="preview-sheet report-sheet">
+                      <div class="sheet-lines"></div>
+                      <div class="sheet-lines"></div>
+                      <div class="sheet-lines"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-4 report-grid">
+                <div>
+                  <h6>Recommendations</h6>
+                  <p>
+                    Monitor for two weeks, provide larger writing tasks, and
+                    repeat screening in 30 days if patterns persist.
+                  </p>
+                </div>
+                <div>
+                  <h6>Signature</h6>
+                  <div class="signature-box">Ms. Rivera</div>
+                  <div class="report-qr">QR</div>
+                </div>
+              </div>
+
+              <div class="mt-4">
+                <h6>Professional Disclaimer</h6>
+                <p>
+                  This screening identifies handwriting patterns that may
+                  indicate the need for further professional evaluation. It is
+                  intended solely as a teacher-support tool and is not a
+                  clinical diagnosis.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section class="content-section" id="notificationsSection">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Communication</p>
+                <h2>Notifications</h2>
+              </div>
+            </div>
+
+            <div class="notification-list">
+              <div class="notification-card">
+                <div class="notification-icon red">
+                  <i class="bi bi-bell-fill"></i>
+                </div>
+                <div>
+                  <h6>Urgent • New Upload</h6>
+                  <p>A new handwriting sample was added for Student ID 2014.</p>
+                </div>
+              </div>
+              <div class="notification-card">
+                <div class="notification-icon blue">
+                  <i class="bi bi-file-earmark-check"></i>
+                </div>
+                <div>
+                  <h6>Completed • Report Ready</h6>
+                  <p>The latest AI screening report is ready to review.</p>
+                </div>
+              </div>
+              <div class="notification-card">
+                <div class="notification-icon orange">
+                  <i class="bi bi-person-raised-hand"></i>
+                </div>
+                <div>
+                  <h6>Follow-up • Student Needs Review</h6>
+                  <p>One student requires another screening next week.</p>
+                </div>
+              </div>
+              <div class="notification-card">
+                <div class="notification-icon green">
+                  <i class="bi bi-calendar3"></i>
+                </div>
+                <div>
+                  <h6>Completed • Monthly Reminder</h6>
+                  <p>Review and close the monthly screening checklist.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="content-section" id="settingsSection">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Preferences</p>
+                <h2>Settings</h2>
+              </div>
+            </div>
+
+            <div class="panel settings-panel">
+              <div class="row g-4">
+                <div class="col-lg-6">
+                  <h5>Teacher Profile</h5>
+                  <div class="mb-3">
+                    <label class="form-label">Full Name</label>
+                    <input class="form-control" value="Ms. Rivera" />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">School Name</label>
+                    <input class="form-control" value="Springfield School" />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Language</label>
+                    <select class="form-select">
+                      <option>English</option>
+                      <option>Spanish</option>
+                      <option>French</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <h5>Preferences</h5>
+                  <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" checked />
+                    <label class="form-check-label">Notification Toggle</label>
+                  </div>
+                  <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" checked />
+                    <label class="form-check-label">Theme Toggle</label>
+                  </div>
+                  <div class="form-check form-switch mb-3">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="highContrastToggle"
+                    />
+                    <label class="form-check-label">High Contrast Mode</label>
+                  </div>
+                  <div class="form-check form-switch mb-3">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="largeFontToggle"
+                    />
+                    <label class="form-check-label">Large Font Mode</label>
+                  </div>
+                  <button class="btn btn-primary" type="button">
+                    Save Settings
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <footer class="footer">
+          <p>
+            Handwriting-to-Cognitive Load Mapping for Undiagnosed Learning
+            Disabilities
+          </p>
+          <div>
+            <span>SDG 3 – Good Health & Well-being</span>
+            <span>SDG 4 – Quality Education</span>
+            <span>Version 1.0</span>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <div class="assistant-panel" id="assistantPanel" aria-live="polite">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">AI assistant</p>
+          <h4>Need help?</h4>
+        </div>
+      </div>
+      <div class="assistant-actions">
+        <button
+          class="assistant-chip"
+          type="button"
+          data-answer="High cognitive load means the student is expending more effort to complete handwriting tasks than peers."
+        >
+          What does High Cognitive Load mean?
+        </button>
+        <button
+          class="assistant-chip"
+          type="button"
+          data-answer="Monitor for two weeks, provide larger writing tasks, and re-screen after 30 days if patterns persist."
+        >
+          What should I do next?
+        </button>
+        <button
+          class="assistant-chip"
+          type="button"
+          data-answer="The report indicates irregular spacing, inconsistent letter formation, and elevated effort during handwriting copying."
+        >
+          Explain this report
+        </button>
+      </div>
+      <div class="assistant-response" id="assistantResponse">
+        Ask a question to receive a plain-language explanation.
+      </div>
+    </div>
+
+    <button
+      class="floating-help"
+      type="button"
+      aria-label="Help"
+      id="assistantToggle"
+    >
+      <i class="bi bi-question-circle"></i>
+    </button>
+
+    <div
+      class="modal fade"
+      id="studentModal"
+      tabindex="-1"
+      aria-labelledby="studentModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div>
+              <p class="eyebrow">Student profile</p>
+              <h5 class="modal-title" id="studentModalLabel">
+                Student Profile
+              </h5>
+            </div>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body" id="studentModalBody"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -36,6 +36,7 @@ export default function UploadPage() {
   const [isUploading, setIsUploading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [success, setSuccess] = useState(false);
+  const [uploadId, setUploadId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -50,6 +51,7 @@ export default function UploadPage() {
     setError(null);
     setSuccess(false);
     setProgress(0);
+    setUploadId(null);
     
     // Create preview
     const objectUrl = URL.createObjectURL(selectedFile);
@@ -63,7 +65,8 @@ export default function UploadPage() {
     setError(null);
     
     try {
-      await uploadApi.uploadFile(selectedStudent, file, (p) => setProgress(p));
+      const result = await uploadApi.uploadFile(selectedStudent, file, (p) => setProgress(p));
+      setUploadId(result.id);
       setSuccess(true);
     } catch (err: any) {
       setError(err?.response?.data?.message || 'Upload failed. Please try again.');
@@ -79,6 +82,7 @@ export default function UploadPage() {
     setSuccess(false);
     setProgress(0);
     setError(null);
+    setUploadId(null);
   };
 
   return (
@@ -230,8 +234,8 @@ export default function UploadPage() {
               <Button variant="outlined" onClick={handleReset}>
                 Upload Another
               </Button>
-              <Button variant="contained" onClick={() => navigate(`/students/${selectedStudent}`)}>
-                View Student Profile
+              <Button variant="contained" color="primary" onClick={() => uploadId && navigate(`/prediction/${uploadId}`)}>
+                View ML Results
               </Button>
             </Box>
           </motion.div>

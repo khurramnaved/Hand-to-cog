@@ -12,10 +12,16 @@ import {
   CircularProgress,
   Alert,
   Divider,
+  List,
+  ListItem,
+  ListItemText,
+  Chip,
+  IconButton
 } from '@mui/material';
-import { ArrowBack, Assessment } from '@mui/icons-material';
+import { ArrowBack, Assessment, Download } from '@mui/icons-material';
 import { studentApi } from '@/services/studentApi';
-import type { Student } from '@/types';
+import { reportApi } from '@/services/reportApi';
+import type { Student, Report } from '@/types';
 import { formatDate } from '@/utils';
 import { motion } from 'framer-motion';
 
@@ -23,23 +29,28 @@ export default function StudentDetail() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [student, setStudent] = useState<Student | null>(null);
+  const [reports, setReports] = useState<Report[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
     if (!id) return;
-    const fetchStudent = async () => {
+    const fetchData = async () => {
       try {
         setLoading(true);
-        const data = await studentApi.getById(id);
-        setStudent(data);
+        const [studentData, allReports] = await Promise.all([
+          studentApi.getById(id),
+          reportApi.getAllReports()
+        ]);
+        setStudent(studentData);
+        setReports(allReports.filter(r => r.student_id === id));
       } catch (err: any) {
-        setError(err?.response?.data?.message || 'Failed to load student');
+        setError(err?.response?.data?.message || 'Failed to load student data');
       } finally {
         setLoading(false);
       }
     };
-    fetchStudent();
+    fetchData();
   }, [id]);
 
   if (loading) {
@@ -139,11 +150,42 @@ export default function StudentDetail() {
               Screening History
             </Typography>
             <Divider sx={{ mb: 2 }} />
-            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 200 }}>
-              <Typography variant="body1" color="text.secondary" sx={{ fontStyle: 'italic' }}>
-                No screenings available yet. (Coming in Phase 5)
-              </Typography>
-            </Box>
+            {reports.length === 0 ? (
+              <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 200 }}>
+                <Typography variant="body1" color="text.secondary" sx={{ fontStyle: 'italic' }}>
+                  No screenings available yet.
+                </Typography>
+              </Box>
+            ) : (
+              <List>
+                {reports.map((report) => (
+                  <ListItem
+                    key={report.id}
+                    sx={{
+                      border: '1px solid rgba(255,255,255,0.1)',
+                      borderRadius: 2,
+                      mb: 1,
+                      '&:hover': { bgcolor: 'rgba(255,255,255,0.02)' }
+                    }}
+                    secondaryAction={
+                      <IconButton edge="end" aria-label="download" color="primary" onClick={() => window.open(report.pdf_url, '_blank')}>
+                        <Download />
+                      </IconButton>
+                    }
+                  >
+                    <ListItemText
+                      primary={`Report from ${new Date(report.created_at).toLocaleDateString()}`}
+                      secondary={`Score: ${(report.overall_score * 100).toFixed(1)}%`}
+                    />
+                    <Chip 
+                      label={report.status} 
+                      color={report.status === 'generated' ? 'success' : 'default'} 
+                      size="small" 
+                    />
+                  </ListItem>
+                ))}
+              </List>
+            )}
           </Card>
         </Box>
       </Box>

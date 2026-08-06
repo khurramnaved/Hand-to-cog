@@ -1,0 +1,89 @@
+# ===========================
+# Hand-To-Cog AI - .gitignore
+# ===========================
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+frontend/dist/
+frontend/build/
+backend/__pycache__/
+backend/**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+frontend/.env
+frontend/.env.local
+backend/.env
+backend/.env.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage/
+htmlcov/
+.coverage
+.pytest_cache/
+.nyc_output/
+
+# ML artifacts (large files)
+notebook/data/
+backend/ml_models/*.pkl
+backend/ml_models/*.joblib
+notebook/outputs/
+*.h5
+*.pt
+*.pth
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+*.swp
+desktop.ini
+
+# Jupyter
+.ipynb_checkpoints/
+notebook/.ipynb_checkpoints/
+
+# Vercel
+.vercel/
+
+# Railway
+.railway/
+
+# Python virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Distribution
+dist/
+build/
+*.egg-info/
+*.egg
+
+# Misc
+*.bak
+*.tmp
+.cache/

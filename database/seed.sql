@@ -1,0 +1,22 @@
+-- =============================================
+-- Hand-To-Cog AI — Seed Data (Development Only)
+-- =============================================
+-- This file is for local development seeding only.
+-- DO NOT run this in production.
+--
+-- Note: To seed users, first create them through Supabase Auth,
+-- then the handle_new_user trigger will automatically create
+-- the public.users record. The sample data below assumes
+-- auth users have already been created.
+
+-- Sample students (replace teacher_id with actual UUID after auth signup)
+-- INSERT INTO public.students (teacher_id, full_name, date_of_birth, gender, grade, section, parent_name, parent_contact)
+-- VALUES
+--   ('TEACHER_UUID_HERE', 'Alice Johnson', '2017-03-15', 'female', 'Grade 2', 'A', 'Sarah Johnson', '+1234567890'),
+--   ('TEACHER_UUID_HERE', 'Bob Smith', '2016-11-22', 'male', 'Grade 3', 'B', 'Michael Smith', '+1234567891'),
+--   ('TEACHER_UUID_HERE', 'Charlie Davis', '2017-07-08', 'male', 'Grade 2', 'A', 'Jennifer Davis', '+1234567892'),
+--   ('TEACHER_UUID_HERE', 'Diana Wilson', '2016-05-30', 'female', 'Grade 3', 'A', 'Robert Wilson', '+1234567893'),
+--   ('TEACHER_UUID_HERE', 'Ethan Brown', '2017-01-12', 'male', 'Grade 2', 'B', 'Lisa Brown', '+1234567894');
+
+-- Note: Upload, screening, report, and activity_log records
+-- should be created through the application flow, not seeded directly.

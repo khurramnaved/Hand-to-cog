@@ -23,7 +23,7 @@
     },
 
     /* Strict type checking */
-    "ignoreDeprecations": "6.0",
+    "ignoreDeprecations": "5.0",
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,

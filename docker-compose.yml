@@ -1,0 +1,29 @@
+# =============================================
+# Hand-To-Cog AI — Docker Compose
+# =============================================
+version: '3.8'
+
+services:
+  backend:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - FLASK_ENV=production
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_KEY}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+    restart: always
+
+  frontend:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:8000/api/v1
+    command: sh -c "npm install && npm run dev -- --host"

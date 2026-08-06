@@ -4,10 +4,12 @@
 
 import logging
 import sys
+import traceback
 from flask import Flask
 from app.config import get_config
 from app.extensions import jwt, cors, limiter, init_supabase
 from app.middlewares import register_error_handlers, register_request_logger
+from app.services.inference_service import InferenceService
 
 
 def create_app(config_class: type | None = None) -> Flask:
@@ -48,6 +50,18 @@ def create_app(config_class: type | None = None) -> Flask:
     # Register middlewares
     register_error_handlers(app)
     register_request_logger(app)
+
+    # Setup global error handler
+    @app.errorhandler(Exception)
+    def handle_exception(e):
+        logger.error("Unhandled Exception: %s\n%s", str(e), traceback.format_exc())
+        return {"status": "error", "message": "An internal error occurred", "data": None}, 500
+
+    # Initialize ML Models
+    try:
+        InferenceService.load_models()
+    except Exception as e:
+        logger.warning("Could not load ML models on startup: %s", e)
 
     # Register blueprints
     _register_blueprints(app)
@@ -111,11 +125,17 @@ def _register_blueprints(app: Flask) -> None:
     from app.controllers.auth_controller import auth_bp
     from app.controllers.student_controller import student_bp
     from app.controllers.upload_controller import upload_bp
+    from app.controllers.predict_controller import predict_bp
+    from app.controllers.report_controller import report_bp
+    from app.controllers.analytics_controller import analytics_bp
 
     app.register_blueprint(health_bp, url_prefix="/api/v1")
     app.register_blueprint(auth_bp, url_prefix="/api/v1/auth")
     app.register_blueprint(student_bp, url_prefix="/api/v1/students")
     app.register_blueprint(upload_bp, url_prefix="/api/v1/uploads")
+    app.register_blueprint(predict_bp, url_prefix="/api/v1/predict")
+    app.register_blueprint(report_bp, url_prefix="/api/v1/reports")
+    app.register_blueprint(analytics_bp, url_prefix="/api/v1/analytics")
 
     # Additional blueprints will be registered in subsequent phases:
     # - auth_bp (Phase 2)

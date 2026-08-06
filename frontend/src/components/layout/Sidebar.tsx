@@ -19,12 +19,15 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import {
-  Dashboard as DashboardIcon,
-  People as PeopleIcon,
-  Assessment as AssessmentIcon,
+  Dashboard,
+  People,
+  Assessment,
+  Settings,
+  CloudUpload,
+  BarChart,
+  PictureAsPdf,
   MenuOpen,
   Menu as MenuIcon,
-  Settings as SettingsIcon,
 } from '@mui/icons-material';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '@/hooks/useAuth';
@@ -47,10 +50,13 @@ export default function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const navItems = [
-    { text: 'Dashboard', icon: <DashboardIcon />, path: '/dashboard', roles: ['teacher', 'admin', 'principal'] },
-    { text: 'Students', icon: <PeopleIcon />, path: '/students', roles: ['teacher', 'admin', 'principal'] },
-    { text: 'Screenings', icon: <AssessmentIcon />, path: '/screenings', roles: ['teacher', 'admin', 'principal'] },
-    { text: 'User Management', icon: <SettingsIcon />, path: '/users', roles: ['admin'] },
+    { text: 'Dashboard', icon: <Dashboard />, path: '/dashboard', roles: ['teacher', 'admin', 'principal'] },
+    { text: 'Students', icon: <People />, path: '/students', roles: ['teacher', 'admin', 'principal'] },
+    { text: 'Upload', icon: <CloudUpload />, path: '/upload', roles: ['teacher', 'admin', 'principal'] },
+    { text: 'Reports', icon: <PictureAsPdf />, path: '/reports', roles: ['teacher', 'admin', 'principal'] },
+    { text: 'Analytics', icon: <BarChart />, path: '/analytics', roles: ['teacher', 'admin', 'principal'] },
+    { text: 'Screenings', icon: <Assessment />, path: '/screenings', roles: ['teacher', 'admin', 'principal'] },
+    { text: 'User Management', icon: <Settings />, path: '/users', roles: ['admin'] },
   ];
 
   const filteredNavItems = navItems.filter((item) => user && item.roles.includes(user.role));

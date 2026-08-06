@@ -72,13 +72,15 @@ export default function Dropzone({
     setIsDragActive(false);
 
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-      validateAndProcessFile(e.dataTransfer.files[0]);
+      const file = e.dataTransfer.files[0];
+      if (file) validateAndProcessFile(file);
     }
   };
 
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-      validateAndProcessFile(e.target.files[0]);
+      const file = e.target.files[0];
+      if (file) validateAndProcessFile(file);
     }
   };
 

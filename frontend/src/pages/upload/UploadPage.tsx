@@ -216,7 +216,7 @@ export default function UploadPage() {
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }} 
             animate={{ opacity: 1, scale: 1 }}
-            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', py: 4 }}
+            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: '2rem', paddingBottom: '2rem' }}
           >
             <CheckCircle sx={{ fontSize: 80, color: 'success.main', mb: 3 }} />
             <Typography variant="h5" sx={{ fontWeight: 700, mb: 1 }}>

@@ -5,7 +5,6 @@
 import logging
 from datetime import datetime, timezone
 from typing import Any
-from gotrue.errors import AuthApiError
 from app.extensions import get_supabase
 from app.repositories.user_repository import UserRepository
 
@@ -57,8 +56,10 @@ class AuthService:
 
             return profile
 
-        except AuthApiError as e:
-            raise ValueError(e.message)
+        except Exception as e:
+            if hasattr(e, 'message'):
+                raise ValueError(e.message)
+            raise ValueError(str(e))
 
     @staticmethod
     def login(email: str, password: str) -> dict[str, Any]:
@@ -91,7 +92,7 @@ class AuthService:
                 "access_token": response.session.access_token,
             }
 
-        except AuthApiError as e:
+        except Exception as e:
             raise ValueError("Invalid email or password")
 
     @staticmethod

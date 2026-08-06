@@ -16,6 +16,9 @@ const DashboardPage = lazy(() => import('@/pages/dashboard/DashboardPage'));
 const StudentsList = lazy(() => import('@/pages/students/StudentsList'));
 const StudentDetail = lazy(() => import('@/pages/students/StudentDetail'));
 const UploadPage = lazy(() => import('@/pages/upload/UploadPage'));
+const PredictionPage = lazy(() => import('@/pages/prediction/PredictionPage'));
+const ReportsList = lazy(() => import('@/pages/reports/ReportsList'));
+const AnalyticsDashboard = lazy(() => import('@/pages/analytics/AnalyticsDashboard'));
 
 // Placeholder components for Phase 4+
 function NotFoundPlaceholder() { return <Box sx={{ p: 4 }}>404 - Not Found</Box>; }
@@ -43,6 +46,9 @@ export default function AppRoutes() {
           <Route path="/students/:id" element={<StudentDetail />} />
           
           <Route path="/upload" element={<UploadPage />} />
+          <Route path="/prediction/:id" element={<PredictionPage />} />
+          <Route path="/reports" element={<ReportsList />} />
+          <Route path="/analytics" element={<AnalyticsDashboard />} />
           
           {/* Catch-all inside AppShell */}
           <Route path="*" element={<NotFoundPlaceholder />} />

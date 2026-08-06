@@ -13,24 +13,26 @@ supabase==2.13.0
 
 # Validation
 pydantic==2.11.3
+email-validator>=2.0.0
 
 # Image Processing
 opencv-python-headless==4.11.0.86
-numpy==2.2.6
+numpy>=2.2.6
 Pillow==11.2.1
 
 # Data Processing
-pandas==2.2.3
+pandas>=2.2.3
+requests>=2.31.0
 
 # Machine Learning
-scikit-learn==1.6.1
-xgboost==2.1.4
-shap==0.46.0
+scikit-learn>=1.6.1
+xgboost>=2.1.4
+shap>=0.46.0
 joblib==1.4.2
 
 # PyTorch (CPU-only for inference)
-torch==2.7.1
-torchvision==0.22.1
+torch>=2.7.1
+torchvision>=0.22.1
 
 # Rate Limiting
 Flask-Limiter==3.12
